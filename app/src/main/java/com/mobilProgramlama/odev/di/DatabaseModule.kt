@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.mobilProgramlama.odev.data.locale.AppDatabase
 import com.mobilProgramlama.odev.data.locale.dao.reminder.ReminderDao
+import com.mobilProgramlama.odev.data.locale.repository.reminder.ReminderRepositoryImpl
+import com.mobilProgramlama.odev.domain.repository.reminder.ReminderRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +25,10 @@ class DatabaseModule {
     @Provides
     fun provideReminderDao(appDatabase: AppDatabase): ReminderDao {
         return appDatabase.reminderDao()
+    }
+
+    @Provides
+    fun provideReminderDbRepositoryImpl(dao: ReminderDao): ReminderRepository {
+        return ReminderRepositoryImpl(dao)
     }
 }

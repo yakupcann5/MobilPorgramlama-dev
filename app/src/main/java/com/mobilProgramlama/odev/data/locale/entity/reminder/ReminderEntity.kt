@@ -1,6 +1,5 @@
 package com.mobilProgramlama.odev.data.locale.entity.reminder
 
-import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -16,7 +15,7 @@ data class ReminderEntity(
     @SerializedName("date")
     var date: Long? = null,
     @SerializedName("sound")
-    var sound: Uri? = null,
+    var sound: String? = null,
     @SerializedName("time")
     var time: Long? = null,
     @SerializedName("timer")

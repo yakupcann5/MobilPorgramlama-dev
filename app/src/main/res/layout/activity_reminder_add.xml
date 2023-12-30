@@ -23,6 +23,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="13dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Başlık Giriniz"
+            android:textColorHint="#BBBBBB"
+            app:boxStrokeColor="@color/color_primary"
+            app:hintTextColor="@color/color_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/customToolbar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:inputType="text"
+                android:lines="1"
+                android:text="@={viewmodel.addReminderModelTitle}"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dateInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -40,7 +71,7 @@
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/customToolbar">
+            app:layout_constraintTop_toBottomOf="@id/titleInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateInput"

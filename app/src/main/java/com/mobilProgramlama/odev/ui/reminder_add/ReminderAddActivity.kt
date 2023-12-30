@@ -9,14 +9,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import com.mobilProgramlama.odev.common.Constants
 import com.mobilProgramlama.odev.common.Timer
 import com.mobilProgramlama.odev.databinding.ActivityReminderAddBinding
+import com.mobilProgramlama.odev.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -26,12 +30,13 @@ import java.util.TimeZone
 @AndroidEntryPoint
 class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityReminderAddBinding
+    private val reminderAddViewModel: ReminderAddViewModel by viewModels()
     private val pickRingtone =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri =
                     result.data?.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
-                // uri'yi veritabanına kaydet
+                reminderAddViewModel.selectedSoundUri.value = uri.toString()
                 val ringtone = RingtoneManager.getRingtone(this, uri)
                 val name = ringtone.getTitle(this)
                 binding.soundInput.setText(name)
@@ -61,6 +66,7 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initView() {
+        binding.viewmodel = reminderAddViewModel
         binding.saveButton.setOnClickListener(this)
         binding.dateInput.setOnClickListener(this)
         binding.timeInput.setOnClickListener(this)
@@ -133,7 +139,7 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
     private fun setDatePickerListener(picker: MaterialDatePicker<Long>, view: TextInputEditText) {
         picker.addOnPositiveButtonClickListener {
             view.setText(
-                SimpleDateFormat("dd/MM/yyyy").format(
+                SimpleDateFormat(Constants.DEFAULT_DATE_FORMAT).format(
                     Date(it)
                 )
             )
@@ -146,7 +152,8 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
             TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
-                val time = SimpleDateFormat("HH:mm").format(cal.time).toString()
+                val time =
+                    SimpleDateFormat(Constants.DEFAULT_TIME_FORMAT).format(cal.time).toString()
                 v.setText(time)
             }
         TimePickerDialog(
@@ -159,8 +166,27 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun addReminder() {
-        //viewModel.checkInput()
-        //viewModel.insertReminder()
-        //viewModel.checkInsertReminderResult()
+        reminderAddViewModel.checkInput()
+        reminderAddViewModel.checkInput.observe(this) { notEmpty ->
+            if (notEmpty) {
+                reminderAddViewModel.selectedSoundUri.observe(this) {
+                    if (it.isNullOrEmpty()) {
+                        reminderAddViewModel.insertReminder(null)
+                    } else {
+                        reminderAddViewModel.insertReminder(it)
+                    }
+                }
+                reminderAddViewModel.checkInsertReminderResult.observe(this) {
+                    if (it) {
+                        Toast.makeText(this, "Hatırlatıcı Oluşturuldu.", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "Bir Sorun Oluştu. Lütfen Tekrar Deneyin.", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+            }
+        }
     }
 }
