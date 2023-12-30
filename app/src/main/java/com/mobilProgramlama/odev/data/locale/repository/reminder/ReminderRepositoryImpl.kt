@@ -1,12 +1,17 @@
-package com.mobilProgramlama.odev.data.locale.repository
+package com.mobilProgramlama.odev.data.locale.repository.reminder
 
 import com.mobilProgramlama.odev.data.locale.dao.reminder.ReminderDao
 import com.mobilProgramlama.odev.data.locale.entity.reminder.ReminderEntity
 import com.mobilProgramlama.odev.domain.repository.reminder.ReminderRepository
 import javax.inject.Inject
 
-class ReminderRepositoryImpl @Inject constructor(private val reminderDao: ReminderDao) : ReminderRepository {
+class ReminderRepositoryImpl @Inject constructor(private val reminderDao: ReminderDao) :
+    ReminderRepository {
     override suspend fun insertReminder(reminder: ReminderEntity) {
         reminderDao.insertReminder(reminder)
+    }
+
+    override suspend fun getAllReminder(): List<ReminderEntity> {
+        return reminderDao.getAllReminder()
     }
 }

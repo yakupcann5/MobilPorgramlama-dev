@@ -27,11 +27,11 @@ class ReminderRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return reminder.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        //(holder as ViewHolder).sentBinding.reminder = reminder[position]
+        (holder as ViewHolder).sentBinding.reminder = reminder[position]
     }
 
     @SuppressLint("NotifyDataSetChanged")
