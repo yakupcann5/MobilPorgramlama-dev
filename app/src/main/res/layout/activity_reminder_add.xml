@@ -100,7 +100,7 @@
             android:hint="Zil Sesi Seçiniz"
             android:textColorHint="#BBBBBB"
             app:boxStrokeColor="@color/color_primary"
-            app:endIconDrawable="@drawable/ic_time"
+            app:endIconDrawable="@drawable/ic_ring"
             app:endIconMode="custom"
             app:endIconTint="@color/black"
             app:hintTextColor="@color/color_primary"
