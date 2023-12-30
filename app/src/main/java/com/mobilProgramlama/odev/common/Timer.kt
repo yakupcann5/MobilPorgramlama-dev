@@ -1,8 +1,8 @@
 package com.mobilProgramlama.odev.common
 
-enum class Timer(val type: Int) {
-    TenMinute(10),
-    TwentyMinute(20),
-    ThirtyMinute(30),
-    FortyMinute(40),
+enum class Timer(val type: String) {
+    TenMinute("10 Dakika Önce"),
+    TwentyMinute("20 Dakika Önce"),
+    ThirtyMinute("30 Dakika Önce"),
+    FortyMinute("40 Dakika Önce"),
 }
