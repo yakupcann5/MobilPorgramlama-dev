@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetAllReminderUseCase @Inject constructor(private val reminderRepository: ReminderRepository) {
-    operator fun invoke() = flow {
+    operator fun invoke(currentTime: Long) = flow {
         try {
             emit(RequestState.Loading())
-            val reminderList = reminderRepository.getAllReminder()
+            val reminderList = reminderRepository.getAllReminder(currentTime)
             emit(RequestState.Success(reminderList))
         } catch (e: Exception) {
             emit(

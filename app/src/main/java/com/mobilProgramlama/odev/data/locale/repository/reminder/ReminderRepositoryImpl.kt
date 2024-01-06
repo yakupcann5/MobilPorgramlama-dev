@@ -11,7 +11,11 @@ class ReminderRepositoryImpl @Inject constructor(private val reminderDao: Remind
         return reminderDao.insertReminder(reminder)
     }
 
-    override suspend fun getAllReminder(): List<ReminderEntity> {
-        return reminderDao.getAllReminder()
+    override suspend fun getAllReminder(currentTime: Long): List<ReminderEntity> {
+        return reminderDao.getAllPendingReminder(currentTime)
+    }
+
+    override suspend fun getAllCompletedReminder(currentTime: Long): List<ReminderEntity> {
+        return reminderDao.getAllCompletedReminder(currentTime)
     }
 }

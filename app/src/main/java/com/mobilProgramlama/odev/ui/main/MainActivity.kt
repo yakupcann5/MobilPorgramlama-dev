@@ -66,7 +66,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getAllReminder() {
-        mainActivityViewModel.getAllReminder()
+        mainActivityViewModel.getAllReminder(
+            System.currentTimeMillis()
+        )
         mainActivityViewModel.allReminder.observe(this) {
             if (it.isNullOrEmpty()) {
                 binding.reminderRecyclerView.visibility = View.GONE

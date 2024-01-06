@@ -12,8 +12,11 @@ interface ReminderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReminder(reminder: ReminderEntity): Long
 
-    @Query("SELECT * FROM reminders")
-    suspend fun getAllReminder(): List<ReminderEntity>
+    @Query("SELECT * FROM reminders WHERE date >= :currentTime")
+    suspend fun getAllPendingReminder(currentTime: Long): List<ReminderEntity>
+
+    @Query("SELECT * FROM reminders WHERE date < :currentTime")
+    suspend fun getAllCompletedReminder(currentTime: Long): List<ReminderEntity>
 
     @Delete
     suspend fun deleteReminder(reminder: ReminderEntity)

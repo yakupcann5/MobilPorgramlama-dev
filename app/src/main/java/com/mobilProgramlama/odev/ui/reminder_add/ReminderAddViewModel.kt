@@ -3,6 +3,7 @@ package com.mobilProgramlama.odev.ui.reminder_add
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.mobilProgramlama.odev.common.Constants
 import com.mobilProgramlama.odev.common.RequestState
 import com.mobilProgramlama.odev.common.Utils
 import com.mobilProgramlama.odev.domain.model.reminder.ReminderModel
@@ -12,6 +13,7 @@ import com.mobilProgramlama.odev.util.MyPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,12 +41,16 @@ class ReminderAddViewModel @Inject constructor(
     }
 
     fun insertReminder(sound: String?) {
+        val dateTimeFormat =
+            SimpleDateFormat("${Constants.DEFAULT_DATE_FORMAT} ${Constants.DEFAULT_TIME_FORMAT}")
+        val reminderDateTime =
+            dateTimeFormat.parse("${addReminderModelDate.value} ${addReminderModelTime.value}")
         val reminderModel = ReminderModel(
             title = addReminderModelTitle.value!!,
             description = addReminderModelDescription.value ?: "",
-            date = Utils.getTimestampByDateString(addReminderModelDate.value ?: ""),
+            date = reminderDateTime?.time ?: 0,
             sound = sound ?: "",
-            time = Utils.getTimestampByDateString(addReminderModelTime.value ?: ""),
+            time = reminderDateTime?.time ?: 0,
             timer = addReminderModelTimer.value ?: "",
             isDone = false,
             isFavorite = false

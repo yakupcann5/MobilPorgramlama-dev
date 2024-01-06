@@ -15,6 +15,7 @@ import com.mobilProgramlama.odev.ui.main.MainActivity
 import android.Manifest.permission.RECEIVE_BOOT_COMPLETED
 import android.app.Service
 import android.os.IBinder
+import com.mobilProgramlama.odev.ui.reminder.ReminderActivity
 import com.mobilProgramlama.odev.ui.splash.SplashActivity
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -31,7 +32,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         // Create an intent for the MainActivity
-        val notificationIntent = Intent(context, MainActivity::class.java)
+        val notificationIntent = Intent(context, ReminderActivity::class.java)
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val notificationPendingIntent =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
@@ -59,7 +60,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
 class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Intent(this, MainActivity::class.java).also {
+        Intent(this, ReminderActivity::class.java).also {
             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(it)
         }
