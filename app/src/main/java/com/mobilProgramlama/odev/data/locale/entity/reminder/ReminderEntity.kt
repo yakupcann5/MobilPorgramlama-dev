@@ -7,21 +7,13 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "reminders")
 data class ReminderEntity(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = 0,
-    @SerializedName("title")
-    var title: String? = "",
-    @SerializedName("description")
-    var description: String? = "",
-    @SerializedName("date")
-    var date: Long? = null,
-    @SerializedName("sound")
-    var sound: String? = null,
-    @SerializedName("time")
-    var time: Long? = null,
-    @SerializedName("timer")
-    var timer: String? = "",
-    @SerializedName("is_done")
-    var isDone: Boolean = false,
-    @SerializedName("is_favorite")
-    var isFavorite: Boolean = false,
+    var id: Int? = null,
+    var title: String?,
+    var description: String?,
+    var date: Long?,
+    var sound: String?,
+    var time: Long?,
+    var timer: String?,
+    var isDone: Boolean?,
+    var isFavorite: Boolean?,
 )

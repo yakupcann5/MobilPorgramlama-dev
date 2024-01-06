@@ -1,12 +1,17 @@
 package com.mobilProgramlama.odev.ui.reminder_add
 
+import android.Manifest.permission.RECEIVE_BOOT_COMPLETED
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -17,6 +22,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import com.mobilProgramlama.odev.common.AlarmReceiver
 import com.mobilProgramlama.odev.common.Constants
 import com.mobilProgramlama.odev.common.Timer
 import com.mobilProgramlama.odev.databinding.ActivityReminderAddBinding
@@ -78,6 +84,61 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             binding.saveButton.id -> {
                 addReminder()
+                reminderAddViewModel.checkInsertReminderResult.observe(this) {
+                    if (it) {
+                        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                        val alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+                            intent.action = RECEIVE_BOOT_COMPLETED
+                            val uniqueId = getUniqueReminder()
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+                                PendingIntent.getBroadcast(
+                                    this,
+                                    uniqueId,
+                                    intent,
+                                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                                )
+                            else
+                                PendingIntent.getBroadcast(
+                                    this,
+                                    uniqueId,
+                                    intent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT
+                                )
+                        }
+
+                        val dateTimeFormat =
+                            SimpleDateFormat("${Constants.DEFAULT_DATE_FORMAT} ${Constants.DEFAULT_TIME_FORMAT}")
+                        val reminderDateTime =
+                            dateTimeFormat.parse("${reminderAddViewModel.addReminderModelDate.value} ${reminderAddViewModel.addReminderModelTime.value}")
+
+                        Log.d("muhammed", "addReminder: ${reminderDateTime.time}")
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
+                            alarmManager.set(
+                                AlarmManager.RTC_WAKEUP,
+                                reminderDateTime.time,
+                                alarmIntent
+                            )
+                        } else {
+                            alarmManager.setExact(
+                                AlarmManager.RTC_WAKEUP,
+                                reminderDateTime.time,
+                                alarmIntent
+                            )
+                        }
+
+                        Toast.makeText(this, "Hatırlatıcı Oluşturuldu.", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Bir Sorun Oluştu. Lütfen Tekrar Deneyin.",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                }
             }
 
             binding.dateInput.id -> {
@@ -96,6 +157,16 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
                 openRingtonePicker()
             }
         }
+    }
+
+    private fun getUniqueReminder(): Int {
+        val sharedPreferences =
+            getSharedPreferences("MyApp", MODE_PRIVATE)
+        val uniqueId =
+            sharedPreferences.getInt("ReminderId", 0)
+        sharedPreferences.edit()
+            .putInt("ReminderId", uniqueId + 1).apply()
+        return uniqueId
     }
 
     private fun openRingtonePicker() {
@@ -170,23 +241,21 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
         reminderAddViewModel.checkInput.observe(this) { notEmpty ->
             if (notEmpty) {
                 reminderAddViewModel.selectedSoundUri.observe(this) {
-                    if (it.isNullOrEmpty()) {
+                    reminderAddViewModel.insertReminder(it)
+                    /*if (it.isNullOrEmpty()) {
                         reminderAddViewModel.insertReminder(null)
                     } else {
                         reminderAddViewModel.insertReminder(it)
-                    }
-                }
-                reminderAddViewModel.checkInsertReminderResult.observe(this) {
-                    if (it) {
-                        Toast.makeText(this, "Hatırlatıcı Oluşturuldu.", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this, "Bir Sorun Oluştu. Lütfen Tekrar Deneyin.", Toast.LENGTH_LONG)
-                            .show()
-                    }
+                    }*/
                 }
             }
         }
     }
+    /*
+      fun deneme() {
+          reminderAddViewModel.checkInput()
+          reminderAddViewModel.checkInput.observe(this) {
+              reminderAddViewModel.insertReminder()
+          }
+      }*/
 }

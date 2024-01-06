@@ -1,9 +1,15 @@
 package com.mobilProgramlama.odev.ui.main
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobilProgramlama.odev.databinding.ActivityMainBinding
@@ -15,14 +21,48 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
     private lateinit var reminderRecyclerViewAdapter: ReminderRecyclerViewAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    if (!Settings.canDrawOverlays(this)) {
+                        Toast.makeText(this, "asdasdas", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        checkOverlayPermission()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViews()
         initRecyclerView()
         getAllReminder()
+    }
+
+    private fun checkOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!Settings.canDrawOverlays(this)) {
+                showPermissionDialog()
+            }
+        }
+    }
+
+    private fun showPermissionDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("İzin Gerekli")
+            .setMessage("Uygulamanın düzgün çalışması için 'Diğer uygulamaların üzerinde görüntüleme' iznine ihtiyacı var. Lütfen ayarlara gidin ve izni verin.")
+            .setPositiveButton("Ayarlara Git") { _, _ ->
+                val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                requestPermissionLauncher.launch(intent)
+            }
+            .setNegativeButton("İptal") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
     private fun getAllReminder() {
