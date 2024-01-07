@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Odev"
         tools:targetApi="31">
         <activity
+            android:name=".ui.completed_list.ComplatedListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.reminder.ReminderActivity"
             android:exported="true" />
         <activity
