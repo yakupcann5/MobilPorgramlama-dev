@@ -20,7 +20,14 @@ object Utils {
         return date.time
     }
 
-    fun getDateStringByTimestamp(timestamp: Long): String {
+    fun getDateStringByTimestampTime(timestamp: Long): String {
+        return try {
+            SimpleDateFormat(Constants.DEFAULT_TIME_FORMAT).format(Date(timestamp))
+        } catch (p: ParseException) {
+            ""
+        }
+    }
+    fun getDateStringByTimestampDate(timestamp: Long): String {
         return try {
             SimpleDateFormat(Constants.DEFAULT_DATE_FORMAT).format(Date(timestamp))
         } catch (p: ParseException) {
