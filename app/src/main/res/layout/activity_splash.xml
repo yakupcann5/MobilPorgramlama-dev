@@ -4,17 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_color"
     tools:context=".ui.splash.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/splashLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="20sp"
-        android:src="@drawable/logo"
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335"
+        app:srcCompat="@drawable/screenshot_2024_01_07_162832_removebg_preview" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="322dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="serif"
+        android:text="ToMinder Uygulamasına Hoşgeldiniz"
+        android:textAlignment="center"
+        android:textColor="#000230"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="156dp"
+        android:layout_height="153dp"
+        android:rotation="130"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_09_at_21_05_24_e553d6aa_removebg_preview"
+        tools:layout_editor_absoluteX="-33dp"
+        tools:layout_editor_absoluteY="-42dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="196dp"
+        android:layout_height="276dp"
+        android:rotation="-140"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_09_at_21_05_24_e553d6aa_removebg_preview"
+        tools:layout_editor_absoluteX="245dp"
+        tools:layout_editor_absoluteY="-53dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
