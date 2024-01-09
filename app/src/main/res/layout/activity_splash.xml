@@ -28,7 +28,7 @@
         android:fontFamily="serif"
         android:text="ToMinder Uygulamasına Hoşgeldiniz"
         android:textAlignment="center"
-        android:textColor="#000230"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,21 +37,27 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="156dp"
-        android:layout_height="153dp"
-        android:rotation="130"
-        app:srcCompat="@drawable/whatsapp_image_2024_01_09_at_21_05_24_e553d6aa_removebg_preview"
-        tools:layout_editor_absoluteX="-33dp"
-        tools:layout_editor_absoluteY="-42dp" />
+        android:layout_width="140dp"
+        android:layout_height="208dp"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="-80dp"
+        android:rotation="116"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_10_at_00_25_50_7d853f7d_removebg_preview" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="196dp"
-        android:layout_height="276dp"
-        android:rotation="-140"
-        app:srcCompat="@drawable/whatsapp_image_2024_01_09_at_21_05_24_e553d6aa_removebg_preview"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="-53dp" />
+        android:layout_width="227dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="-50dp"
+        android:rotation="-144"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_10_at_00_25_50_7d853f7d_removebg_preview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
