@@ -5,6 +5,7 @@
     android:layout_height="85dp"
     android:background="@color/color_primary">
 
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/customToolbarTitle"
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:background="@drawable/ic_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.483" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/customToolbarDoneButton"

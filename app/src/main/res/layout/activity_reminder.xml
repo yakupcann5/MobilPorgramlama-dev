@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/background_color"
     tools:context=".ui.reminder.ReminderActivity">
 
     <androidx.appcompat.widget.AppCompatButton
@@ -14,7 +14,6 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_add_button_background"
         android:padding="15dp"
-        android:text="Tamam"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,10 +46,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/dateTextView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="saat" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/dateTextView"
@@ -59,34 +58,58 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/timeTextView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="Tarih" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
         android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TitleView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        tools:text="title" />
+        app:layout_constraintTop_toTopOf="@+id/TitleView"/>
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="232dp"
-        android:layout_height="99dp"
+        android:layout_width="331dp"
+        android:layout_height="112dp"
         android:layout_marginTop="32dp"
+        android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        tools:text="Description" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"/>
+
+    <View
+        android:id="@+id/TitleView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_text_input_layout_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+
+    <View
+        android:id="@+id/descriptionView"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_text_input_layout_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TitleView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
