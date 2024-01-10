@@ -246,11 +246,4 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-    /*
-      fun deneme() {
-          reminderAddViewModel.checkInput()
-          reminderAddViewModel.checkInput.observe(this) {
-              reminderAddViewModel.insertReminder()
-          }
-      }*/
 }
