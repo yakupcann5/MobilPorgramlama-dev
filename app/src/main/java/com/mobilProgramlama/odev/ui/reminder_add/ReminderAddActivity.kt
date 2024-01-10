@@ -49,6 +49,7 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderAddBinding.inflate(layoutInflater)
