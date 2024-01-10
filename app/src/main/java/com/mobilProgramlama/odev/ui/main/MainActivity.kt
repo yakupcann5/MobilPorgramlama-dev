@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobilProgramlama.odev.databinding.ActivityMainBinding
+import com.mobilProgramlama.odev.ui.completed_list.ComplatedListActivity
 import com.mobilProgramlama.odev.ui.reminder_add.ReminderAddActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -97,7 +98,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.customToolbar.customToolbarOptionalButton.id -> {
-
+                val intent = Intent(this,ComplatedListActivity::class.java)
+                startActivity(intent)
             }
 
             binding.reminderAddButton.id -> {
