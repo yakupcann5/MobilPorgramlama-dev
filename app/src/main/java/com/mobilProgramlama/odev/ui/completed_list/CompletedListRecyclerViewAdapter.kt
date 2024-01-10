@@ -9,7 +9,7 @@ import com.mobilProgramlama.odev.R
 import com.mobilProgramlama.odev.data.locale.entity.reminder.ReminderEntity
 import com.mobilProgramlama.odev.databinding.CompletedListItemBinding
 
-class CompletedListRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CompletedListRecyclerViewAdapter(private val onClickListener: ReminderOnClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var reminder: ArrayList<ReminderEntity> = arrayListOf()
 
     class ViewHolder(view: CompletedListItemBinding) :
@@ -32,6 +32,9 @@ class CompletedListRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewH
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ViewHolder).sentBinding.reminder = reminder[position]
+        holder.sentBinding.reminderFavIcon.setOnClickListener {
+            onClickListener.onClick(reminder[position])
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
