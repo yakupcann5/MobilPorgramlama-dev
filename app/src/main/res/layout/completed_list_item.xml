@@ -7,6 +7,10 @@
         <variable
             name="reminder"
             type="com.mobilProgramlama.odev.data.locale.entity.reminder.ReminderEntity" />
+
+        <variable
+            name="onClick"
+            type="com.mobilProgramlama.odev.ui.completed_list.ReminderOnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

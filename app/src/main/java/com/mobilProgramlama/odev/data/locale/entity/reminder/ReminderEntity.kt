@@ -8,12 +8,12 @@ import com.google.gson.annotations.SerializedName
 data class ReminderEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    var title: String?,
-    var description: String?,
-    var date: Long?,
-    var sound: String?,
-    var time: Long?,
-    var timer: String?,
-    var isDone: Boolean?,
-    var isFavorite: Boolean?,
+    var title: String? = null,
+    var description: String? = null,
+    var date: Long? = null,
+    var sound: String? = null,
+    var time: Long? = null,
+    var timer: String? = null,
+    var isDone: Boolean? = null,
+    var isFavorite: Boolean? = null,
 )
