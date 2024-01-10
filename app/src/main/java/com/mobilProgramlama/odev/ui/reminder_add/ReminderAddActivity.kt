@@ -132,13 +132,6 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Bir Sorun Oluştu. Lütfen Tekrar Deneyin.",
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
                     }
                 }
             }

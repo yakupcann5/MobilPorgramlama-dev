@@ -14,6 +14,8 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_add_button_background"
         android:padding="15dp"
+        android:text="Tamam"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/dateTextView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -57,11 +59,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/timeTextView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <TextView
@@ -73,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/TitleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TitleView"/>
+        app:layout_constraintTop_toTopOf="@+id/TitleView" />
 
     <TextView
         android:id="@+id/descriptionTextView"
@@ -84,7 +86,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"/>
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <View
         android:id="@+id/TitleView"
@@ -98,7 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dateTextView" />
 
-    <View
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/descriptionView"
         android:layout_width="0dp"
         android:layout_height="128dp"
@@ -106,8 +108,10 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_text_input_layout_background"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TitleView" />
 
