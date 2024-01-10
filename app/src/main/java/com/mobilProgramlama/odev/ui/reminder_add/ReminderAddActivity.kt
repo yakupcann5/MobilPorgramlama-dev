@@ -73,6 +73,7 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         binding.viewmodel = reminderAddViewModel
+        binding.customToolbar.customToolbarOptionalButton.visibility = View.GONE
         binding.saveButton.setOnClickListener(this)
         binding.dateInput.setOnClickListener(this)
         binding.timeInput.setOnClickListener(this)
