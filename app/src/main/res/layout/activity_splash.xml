@@ -4,17 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_color"
     tools:context=".ui.splash.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/splashLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="20sp"
-        android:src="@drawable/logo"
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335"
+        app:srcCompat="@drawable/screenshot_2024_01_07_162832_removebg_preview" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="322dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="serif"
+        android:text="ToMinder Uygulamasına Hoşgeldiniz"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="140dp"
+        android:layout_height="208dp"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="-80dp"
+        android:rotation="116"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_10_at_00_25_50_7d853f7d_removebg_preview" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="227dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="-50dp"
+        android:rotation="-144"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whatsapp_image_2024_01_10_at_00_25_50_7d853f7d_removebg_preview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
