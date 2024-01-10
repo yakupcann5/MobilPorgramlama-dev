@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Geçmiş Hatırlatıcınız Yok"
         android:textAlignment="center"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:visibility="gone"
