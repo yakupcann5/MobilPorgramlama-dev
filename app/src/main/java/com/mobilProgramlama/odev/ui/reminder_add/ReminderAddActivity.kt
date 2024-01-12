@@ -6,22 +6,26 @@ import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColor
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import com.mobilProgramlama.odev.R
 import com.mobilProgramlama.odev.common.AlarmReceiver
 import com.mobilProgramlama.odev.common.Constants
 import com.mobilProgramlama.odev.common.Timer
@@ -113,7 +117,6 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
                         val reminderDateTime =
                             dateTimeFormat.parse("${reminderAddViewModel.addReminderModelDate.value} ${reminderAddViewModel.addReminderModelTime.value}")
 
-                        Log.d("muhammed", "addReminder: ${reminderDateTime.time}")
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
                             alarmManager.set(
                                 AlarmManager.RTC_WAKEUP,
@@ -212,23 +215,28 @@ class ReminderAddActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun createTimePicker(v: TextInputEditText) {
+    private fun createTimePicker(timeText: TextView) {
         val cal = Calendar.getInstance()
-        val timeSetListener =
-            TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                cal.set(Calendar.HOUR_OF_DAY, hour)
-                cal.set(Calendar.MINUTE, minute)
-                val time =
-                    SimpleDateFormat(Constants.DEFAULT_TIME_FORMAT).format(cal.time).toString()
-                v.setText(time)
-            }
-        TimePickerDialog(
+        val hour = cal.get(Calendar.HOUR_OF_DAY)
+        val minute = cal.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(
             this,
-            timeSetListener,
-            cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE),
+            R.style.PickerTheme, { _, selectedHour, selectedMinute ->
+                // Process the selected time
+                cal.set(Calendar.HOUR_OF_DAY, selectedHour)
+                cal.set(Calendar.MINUTE, selectedMinute)
+                val time = SimpleDateFormat(Constants.DEFAULT_TIME_FORMAT).format(cal.time)
+                timeText.text = time
+                timeText.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            },
+            hour,
+            minute,
             true
-        ).show()
+        )
+        timePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Tamam", timePickerDialog)
+        timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "İptal", timePickerDialog)
+        timePickerDialog.show()
     }
 
     private fun addReminder() {

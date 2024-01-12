@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     if (!Settings.canDrawOverlays(this)) {
-                        Toast.makeText(this, "asdasdas", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
