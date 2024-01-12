@@ -58,6 +58,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 }
 
+
 class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Intent(this, ReminderActivity::class.java).also {
