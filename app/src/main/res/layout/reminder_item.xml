@@ -11,7 +11,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/itemCardView"
+        android:id="@+id/reminderItemCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,7 +43,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@{reminder.title}"
-                android:textColor="@color/black"
+                android:textColor="@color/color_primary"
                 android:textSize="17sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@{reminder.description}"
-                android:textColor="@color/black"
+                android:textColor="@color/button_color"
                 android:textSize="15sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"

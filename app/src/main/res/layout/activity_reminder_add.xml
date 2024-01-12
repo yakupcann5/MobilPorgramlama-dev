@@ -36,7 +36,7 @@
             android:focusableInTouchMode="true"
             android:hint="Başlık Giriniz"
             android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -54,7 +54,7 @@
                 android:inputType="text"
                 android:lines="1"
                 android:text="@={viewmodel.addReminderModelTitle}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -78,7 +78,7 @@
             android:focusableInTouchMode="true"
             android:hint="Tarih Seçiniz"
             android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeColor="@color/white"
             app:endIconDrawable="@drawable/ic_calendar"
             app:endIconMode="custom"
             app:endIconTint="@color/white"
@@ -95,7 +95,7 @@
                 android:inputType="datetime"
                 android:lines="1"
                 android:text="@={viewmodel.addReminderModelDate}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,7 +117,7 @@
             android:focusableInTouchMode="true"
             android:hint="Saat Seçiniz"
             android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeColor="@color/white"
             app:endIconDrawable="@drawable/ic_time"
             app:endIconMode="custom"
             app:endIconTint="@color/white"
@@ -134,7 +134,7 @@
                 android:inputType="datetime"
                 android:lines="1"
                 android:text="@={viewmodel.addReminderModelTime}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -156,7 +156,7 @@
             android:focusableInTouchMode="true"
             android:hint="Zil Sesi Seçiniz"
             android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeColor="@color/white"
             app:endIconDrawable="@drawable/ic_ring"
             app:endIconMode="custom"
             app:endIconTint="@color/white"
@@ -172,7 +172,7 @@
                 android:focusableInTouchMode="false"
                 android:inputType="datetime"
                 android:lines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -194,7 +194,7 @@
             app:boxCornerRadiusTopStart="20dp"
             android:hint="Açıklama"
             android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeColor="@color/white"
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +207,7 @@
                 android:focusableInTouchMode="true"
                 android:lines="5"
                 android:text="@={viewmodel.addReminderModelDescription}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -222,6 +222,7 @@
             android:layout_marginTop="13dp"
             android:layout_marginEnd="16dp"
             android:focusableInTouchMode="true"
+            app:boxStrokeColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -239,7 +240,7 @@
                 android:inputType="none"
                 android:lines="1"
                 android:text="@={viewmodel.addReminderModelTimer}"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
