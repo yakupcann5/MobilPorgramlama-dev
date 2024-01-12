@@ -8,14 +8,12 @@ import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.mobilProgramlama.odev.common.Utils
 import com.mobilProgramlama.odev.databinding.ActivityReminderBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class ReminderActivity : AppCompatActivity(), View.OnClickListener{
@@ -91,17 +89,13 @@ class ReminderActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun getAllReminder() {
         reminderViewModel.allReminder.observe(this) {
-            Log.d("TAG", "getAllReminder:girdi")
             it.let {
-                Log.d("TAG", "getAllReminder:girdi2")
                 if (it != null) {
-                    Log.d("TAG", "getAllReminder:bo değil")
                     mp = MediaPlayer.create(this, Uri.parse(it.sound))
                     binding.descriptionTextView.text = it.description
                     binding.titleTextView.text = it.title
                     binding.timeTextView.text = Utils.getDateStringByTimestampTime(it.time!!)
                     binding.dateTextView.text = Utils.getDateStringByTimestampDate(it.date!!)
-                    Log.d("TAG", "getAllReminder:çalacak")
                     mp.start()
                 }
             }

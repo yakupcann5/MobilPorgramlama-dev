@@ -6,17 +6,12 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.mobilProgramlama.odev.R
-import com.mobilProgramlama.odev.ui.main.MainActivity
-import android.Manifest.permission.RECEIVE_BOOT_COMPLETED
 import android.app.Service
 import android.os.IBinder
 import com.mobilProgramlama.odev.ui.reminder.ReminderActivity
-import com.mobilProgramlama.odev.ui.splash.SplashActivity
 
 class AlarmReceiver : BroadcastReceiver() {
 
@@ -24,7 +19,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationChannelId = "reminder_notification_channel"
 
-        Log.i("Muhammed", "onReceive: Alarm received.")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(notificationChannelId, "Reminder Notifications", NotificationManager.IMPORTANCE_HIGH)
@@ -57,6 +51,7 @@ class AlarmReceiver : BroadcastReceiver() {
         context.startActivity(notificationIntent)
     }
 }
+
 
 class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

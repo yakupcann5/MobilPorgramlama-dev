@@ -1,9 +1,7 @@
 package com.mobilProgramlama.odev.ui.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobilProgramlama.odev.common.RequestState
 import com.mobilProgramlama.odev.data.locale.entity.reminder.ReminderEntity
@@ -30,10 +28,8 @@ class MainActivityViewModel @Inject constructor(
                     allReminder.value = it.data
                 }
                 is RequestState.Error -> {
-                    Log.d("Reminder", "getAllReminder: ${it.errorCode}")
                 }
                 is RequestState.Loading -> {
-                    Log.d("Reminder", "getAllReminder: Loading")
                 }
             }
         }.launchIn(viewModelScope)

@@ -30,10 +30,8 @@ class CompleteListActivityViewModel @Inject constructor(
                     completeList.value = result.data
                 }
                 is RequestState.Error -> {
-                    Log.d("Reminder", "getAllReminder: ${result.errorCode}")
                 }
                 is RequestState.Loading -> {
-                    Log.d("Reminder", "getAllReminder: Loading")
                 }
             }
         }.launchIn(viewModelScope)
@@ -46,10 +44,8 @@ class CompleteListActivityViewModel @Inject constructor(
                     deleteReminderSuccess.value = true
                 }
                 is RequestState.Error -> {
-                    Log.d("Reminder", "getAllReminder: ${result.errorCode}")
                 }
                 is RequestState.Loading -> {
-                    Log.d("Reminder", "getAllReminder: Loading")
                 }
             }
         }.launchIn(viewModelScope)

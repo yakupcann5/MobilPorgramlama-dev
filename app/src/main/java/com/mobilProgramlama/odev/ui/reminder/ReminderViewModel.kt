@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mobilProgramlama.odev.common.RequestState
 import com.mobilProgramlama.odev.data.locale.entity.reminder.ReminderEntity
-import com.mobilProgramlama.odev.domain.use_case.reminder.GetAllReminderUseCase
 import com.mobilProgramlama.odev.domain.use_case.reminder.GetCompleteSingleReminderUseCase
 import com.mobilProgramlama.odev.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,11 +30,9 @@ class ReminderViewModel @Inject constructor(
                 }
 
                 is RequestState.Error -> {
-                    Log.d("Reminder", "getAllReminder: ${it.errorCode}")
                 }
 
                 is RequestState.Loading -> {
-                    Log.d("Reminder", "getAllReminder: Loading")
                 }
             }
         }.launchIn(viewModelScope)
